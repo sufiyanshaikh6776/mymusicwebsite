@@ -3,129 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Gift</title>
+    <title>Special Gift</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #f9c5d1, #fad0c4);
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .container {
             text-align: center;
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to bottom, #f9f9f9, #e3f2fd);
+            padding: 20px;
+            margin: 0;
         }
         h1 {
+            color: #4caf50;
             font-size: 2.5rem;
-            color: #f76c6c;
             animation: fadeIn 2s ease-in-out;
         }
         p {
+            color: #555;
             font-size: 1.2rem;
             margin-top: 10px;
             animation: fadeIn 3s ease-in-out;
         }
-        .slideshow {
-            margin: 20px 0;
-            opacity: 0;
-            animation: fadeIn 4s ease-in-out forwards;
-        }
         .slideshow img {
-            max-width: 100%;
+            max-width: 90%;
+            margin: 20px 0;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: fadeInImage 2s ease-in-out;
+            animation: fadeInImage 4s ease-in-out;
         }
         button {
             margin-top: 20px;
             padding: 10px 20px;
-            font-size: 1.1rem;
+            font-size: 16px;
             color: #fff;
-            background: #f76c6c;
+            background-color: #007bff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s;
-            animation: fadeIn 5s ease-in-out;
+            animation: fadeIn 4s ease-in-out;
         }
         button:hover {
-            background: #fa5252;
+            background-color: #0056b3;
         }
-        .hidden-message {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            font-style: italic;
-            color: #555;
+        audio {
             display: none;
-            animation: fadeIn 6s ease-in-out;
         }
-        /* Animation for fading in */
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
-        /* Animation for images fading in */
         @keyframes fadeInImage {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        /* Hide the audio controls */
-        audio {
-            display: none;
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <!-- Background music player (hidden) -->
-    <audio autoplay loop>
+    <h1>For Someone Special</h1>
+    <p>May Allah guide and bless you always. You are a source of inspiration in my life.</p>
+
+    <!-- Slideshow container -->
+    <div class="slideshow">
+        <img id="slideshowImage" src="image1.jpeg" alt="Islamic Quote 1">
+    </div>
+
+    <!-- Audio control -->
+    <button onclick="playMusic()">Play Music</button>
+    <audio id="backgroundMusic" loop>
         <source src="song.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
-    <div class="container">
-        <h1>For Someone Special</h1>
-        <p>May Allah guide and protect you always. You are a blessing in my life, and I appreciate the time and wisdom you bring to my journey.</p>
-        <div class="slideshow">
-            <img id="slideshowImage" src="image1.jpeg" alt="Peace Calligraphy">
-        </div>
-        <button onclick="revealMessage()">Click to Reveal a Special Message</button>
-        <p class="hidden-message" id="hiddenMessage">
-            I ask Allah to always bless you with success in both this world and the Hereafter. Your hard work and integrity inspire me every day. May our paths continue to be aligned with sincerity, faith, and respect.
-        </p>
-    </div>
-
     <script>
-        // Slideshow functionality with Islamic Quotes
+        // Slideshow functionality
         const images = [
-            "image1.jpeg", // Image with Arabic calligraphy of "Peace"
-            "image2.jpeg", // Image with Quran verse 16:128
-            "image3.jpeg"  // Image of a mosque with the words "May Allah bless you always."
+            "image1.jpeg", // Image with Islamic calligraphy of "Peace"
+            "image2.jpeg", // Quran verse: "Indeed, Allah is with those who fear Him..."
+            "image3.jpeg"  // Scenic mosque image: "May Allah bless you always"
         ];
         let currentImageIndex = 0;
         const slideshowImage = document.getElementById("slideshowImage");
 
         setInterval(() => {
             currentImageIndex = (currentImageIndex + 1) % images.length;
-            slideshowImage.style.opacity = 0; // Start fading out the image
+            slideshowImage.style.opacity = 0; // Fade out effect
             setTimeout(() => {
-                slideshowImage.src = images[currentImageIndex]; // Change the image source
-                slideshowImage.style.opacity = 1; // Start fading in the new image
-            }, 500); // Half a second delay to allow fading out
-        }, 3000); // Change image every 3 seconds
+                slideshowImage.src = images[currentImageIndex]; // Change the image
+                slideshowImage.style.opacity = 1; // Fade in effect
+            }, 500); // Half-second delay for smooth transition
+        }, 3000); // Change every 3 seconds
 
-        // Reveal hidden message
-        function revealMessage() {
-            document.getElementById("hiddenMessage").style.display = "block";
+        // Audio playback functionality
+        function playMusic() {
+            const audio = document.getElementById("backgroundMusic");
+            audio.play().then(() => {
+                console.log("Music is playing.");
+            }).catch(error => {
+                console.error("Error playing music:", error);
+                alert("Unable to play music automatically. Please check your browser settings.");
+            });
         }
     </script>
 </body>
-</html
+</html>
