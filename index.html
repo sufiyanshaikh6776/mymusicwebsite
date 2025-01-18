@@ -23,12 +23,25 @@
             margin-top: 10px;
             animation: fadeIn 3s ease-in-out;
         }
+        .slideshow {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
         .slideshow img {
-            max-width: 90%;
-            margin: 20px 0;
+            width: 100%;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: fadeInImage 4s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 2s ease-in-out; /* Smooth fade effect */
+        }
+        .slideshow img.active {
+            opacity: 1;
+            z-index: 1;
         }
         button {
             margin-top: 20px;
@@ -75,7 +88,9 @@
 
     <!-- Slideshow container -->
     <div class="slideshow">
-        <img id="slideshowImage" src="image1.jpeg" alt="Islamic Quote 1">
+        <img src="image1.jpeg" alt="Islamic Quote 1" class="active">
+        <img src="image2.jpeg" alt="Islamic Quote 2">
+        <img src="image3.jpeg" alt="Islamic Quote 3">
     </div>
 
     <!-- Audio control -->
@@ -87,22 +102,17 @@
 
     <script>
         // Slideshow functionality
-        const images = [
-            "image1.jpeg", // Image with Islamic calligraphy of "Peace"
-            "image2.jpeg", // Quran verse: "Indeed, Allah is with those who fear Him..."
-            "image3.jpeg"  // Scenic mosque image: "May Allah bless you always"
-        ];
-        let currentImageIndex = 0;
-        const slideshowImage = document.getElementById("slideshowImage");
+        const images = document.querySelectorAll(".slideshow img");
+        let currentIndex = 0;
 
-        setInterval(() => {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            slideshowImage.style.opacity = 0; // Fade out effect
-            setTimeout(() => {
-                slideshowImage.src = images[currentImageIndex]; // Change the image
-                slideshowImage.style.opacity = 1; // Fade in effect
-            }, 500); // Half-second delay for smooth transition
-        }, 10000); // Change every 3 seconds
+        function showNextImage() {
+            images[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add("active");
+        }
+
+        // Change image every 10 seconds
+        setInterval(showNextImage, 10000);
 
         // Audio playback functionality
         const audio = document.getElementById("backgroundMusic");
