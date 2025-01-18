@@ -27,18 +27,23 @@
         h1 {
             font-size: 2.5rem;
             color: #f76c6c;
+            animation: fadeIn 2s ease-in-out;
         }
         p {
             font-size: 1.2rem;
             margin-top: 10px;
+            animation: fadeIn 3s ease-in-out;
         }
         .slideshow {
             margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 4s ease-in-out forwards;
         }
         .slideshow img {
             max-width: 100%;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeInImage 2s ease-in-out;
         }
         button {
             margin-top: 20px;
@@ -50,6 +55,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s;
+            animation: fadeIn 5s ease-in-out;
         }
         button:hover {
             background: #fa5252;
@@ -60,6 +66,17 @@
             font-style: italic;
             color: #555;
             display: none;
+            animation: fadeIn 6s ease-in-out;
+        }
+        /* Animation for fading in */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        /* Animation for images fading in */
+        @keyframes fadeInImage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         /* Hide the audio controls */
         audio {
@@ -78,7 +95,7 @@
         <h1>For Someone Special</h1>
         <p>May Allah guide and protect you always. You are a blessing in my life, and I appreciate the time and wisdom you bring to my journey.</p>
         <div class="slideshow">
-            <img id="slideshowImage" src="peace_calligraphy.jpg" alt="Peace Calligraphy">
+            <img id="slideshowImage" src="image1.jpeg" alt="Peace Calligraphy">
         </div>
         <button onclick="revealMessage()">Click to Reveal a Special Message</button>
         <p class="hidden-message" id="hiddenMessage">
@@ -90,15 +107,19 @@
         // Slideshow functionality with Islamic Quotes
         const images = [
             "image1.jpeg", // Image with Arabic calligraphy of "Peace"
-            "image2.jpeg",       // Image with Quran verse 16:128
-            "image3.jpeg"       // Image of a mosque with the words "May Allah bless you always."
+            "image2.jpeg", // Image with Quran verse 16:128
+            "image3.jpeg"  // Image of a mosque with the words "May Allah bless you always."
         ];
         let currentImageIndex = 0;
         const slideshowImage = document.getElementById("slideshowImage");
 
         setInterval(() => {
             currentImageIndex = (currentImageIndex + 1) % images.length;
-            slideshowImage.src = images[currentImageIndex];
+            slideshowImage.style.opacity = 0; // Start fading out the image
+            setTimeout(() => {
+                slideshowImage.src = images[currentImageIndex]; // Change the image source
+                slideshowImage.style.opacity = 1; // Start fading in the new image
+            }, 500); // Half a second delay to allow fading out
         }, 3000); // Change image every 3 seconds
 
         // Reveal hidden message
@@ -107,4 +128,4 @@
         }
     </script>
 </body>
-    </html>
+</html
