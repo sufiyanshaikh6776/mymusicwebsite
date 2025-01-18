@@ -3,98 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player</title>
-    <link rel="stylesheet" href="music.css">
+    <title>A Special Gift</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f9c5d1, #fad0c4);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #f76c6c;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        .slideshow {
+            margin: 20px 0;
+        }
+        .slideshow img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #f76c6c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #fa5252;
+        }
+        .hidden-message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #555;
+            display: none;
+        }
+        /* Hide the audio controls */
+        audio {
+            display: none;
+        }
+    </style>
 </head>
-<header>
-    <div class="logo">
-        <img src="logo.jpg" alt="Music Player Logo">
-        <h1>My Music Player</h1>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <!-- Add more navigation links as needed -->
-        </ul>
-    </nav>
-</header>
-
-<main>
-        <div class="playlist-wrapper">
-            <div class="playlist">
-                <div class="music-item">
-                    <img src="img1.jpg" alt="Song 1" data-audio="music1.mp3" data-title="Song 1">
-                    <p class="song-name">Song 1</p>
-                </div>
-                <div class="music-item">
-                    <img src="falaktu.jpg" alt="Song 2" data-audio="falaktu.mp3" data-title="Song 2">
-                    <p class="song-name">Song 2</p>
-                </div>
-                <!-- Add more music items as needed -->
-                <div class="music-item">
-                    <img src="mehbooba.jpg" alt="Song 2" data-audio="mehbooba.mp3" data-title="Song 2">
-                    <p class="song-name">Song 2</p>
-                </div>
-                <div class="music-item">
-                    <img src="falaktu.jpg" alt="Song 2" data-audio="falaktu.mp3" data-title="Song 2">
-                    <p class="song-name">Song 2</p>
-                </div>
-                <div class="music-item">
-                    <img src="mehbooba.jpg" alt="Song 2" data-audio="mehbooba.mp3" data-title="Song 2">
-                    <p class="song-name">Song 2</p>
-                </div>
-                <!-- Add more music items as needed -->
-            </div>
-        </div>
-        <div class="playlist-wrapper">
-            <div class="playlist">
-                <div class="music-item">
-                    <img src="img1.jpg" alt="Song 1" data-audio="music1.mp3" data-title="Song 1">
-                    <p class="song-name">Song 1</p>
-                </div>
-                <div class="music-item">
-                    <img src="falaktu.jpg" alt="Song 2" data-audio="falaktu.mp3" data-title="Song 2">
-                    <p class="song-name">Song 2</p>
-                </div>
-                <!-- Add more music items as needed -->
-                <div class="music-item">
-                    <img src="mehbooba.jpg" alt="Song 3" data-audio="mehbooba.mp3" data-title="Song 3">
-                    <p class="song-name">Song 3</p>
-                </div>
-                <!-- Add more music items as needed -->
-                <div class="music-item">
-                    <img src="falaktu.jpg" alt="Song 2" data-audio="falaktu.mp3" data-title="Song 2">
-                    <p class="song-name">Song 2</p>
-                </div>
-                <div class="music-item">
-                    <img src="img1.jpg" alt="Song 2" data-audio="music2.mp3" data-title="Song 2">
-                    <p class="song-name">Song 2</p>
-                </div>
-            </div>
-        </div>
-</main>
-
 <body>
-    
-    <div class="footer">
-        <div class="current-song">
-            <p id="currentSongTitle">Current Song: </p>
-            <p id="currentSongProgress">Song Progress: </p>
-        </div>
-        <div class="controls">
-            <button id="prevBtn">Previous</button>
-            <button id="playBtn">Play</button>
-            <button id="nextBtn">Next</button>
-        </div>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-    </div>
-    <!-- Remove the controls attribute to hide default controls -->
-    <audio id="audioPlayer" src=""></audio>
-    <script src="music.js"></script>
-</body>
+    <!-- Background music player (hidden) -->
+    <audio autoplay loop>
+        <source src="background_song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
-</html>
+    <div class="container">
+        <h1>For Someone Special</h1>
+        <p>May Allah guide and protect you always. You are a blessing in my life, and I appreciate the time and wisdom you bring to my journey.</p>
+        <div class="slideshow">
+            <img id="slideshowImage" src="peace_calligraphy.jpg" alt="Peace Calligraphy">
+        </div>
+        <button onclick="revealMessage()">Click to Reveal a Special Message</button>
+        <p class="hidden-message" id="hiddenMessage">
+            I ask Allah to always bless you with success in both this world and the Hereafter. Your hard work and integrity inspire me every day. May our paths continue to be aligned with sincerity, faith, and respect.
+        </p>
+    </div>
+
+    <script>
+        // Slideshow functionality with Islamic Quotes
+        const images = [
+            "peace_calligraphy.jpg", // Image with Arabic calligraphy of "Peace"
+            "quran_verse.jpg",       // Image with Quran verse 16:128
+            "mosque_image.jpg"       // Image of a mosque with the words "May Allah bless you always."
+        ];
+        let currentImageIndex = 0;
+        const slideshowImage = document.getElementById("slideshowImage");
+
+        setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            slideshowImage.src = images[currentImageIndex];
+        }, 3000); // Change image every 3 seconds
+
+        // Reveal hidden message
+        function revealMessage() {
+            document.getElementById("hiddenMessage").style.display = "block";
+        }
+    </script>
+</body>
+    </html>
