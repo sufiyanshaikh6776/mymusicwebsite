@@ -47,6 +47,18 @@
         audio {
             display: none;
         }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            button {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+        }
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -67,8 +79,8 @@
     </div>
 
     <!-- Audio control -->
-    <button onclick="playMusic()">Play Music</button>
-    <audio id="backgroundMusic" loop>
+    <button id="playButton" onclick="playMusic()">Play Music</button>
+    <audio id="backgroundMusic" loop autoplay>
         <source src="song.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
@@ -93,13 +105,28 @@
         }, 3000); // Change every 3 seconds
 
         // Audio playback functionality
-        function playMusic() {
-            const audio = document.getElementById("backgroundMusic");
+        const audio = document.getElementById("backgroundMusic");
+        const playButton = document.getElementById("playButton");
+
+        // Attempt autoplay when the page loads
+        document.addEventListener("DOMContentLoaded", () => {
             audio.play().then(() => {
                 console.log("Music is playing.");
+                playButton.style.display = "none"; // Hide play button if autoplay works
+            }).catch(error => {
+                console.error("Autoplay failed:", error);
+                playButton.style.display = "inline-block"; // Show play button if autoplay is blocked
+            });
+        });
+
+        // Manual play fallback
+        function playMusic() {
+            audio.play().then(() => {
+                console.log("Music is playing.");
+                playButton.style.display = "none"; // Hide play button after playing
             }).catch(error => {
                 console.error("Error playing music:", error);
-                alert("Unable to play music automatically. Please check your browser settings.");
+                alert("Unable to play music. Please check your browser settings.");
             });
         }
     </script>
